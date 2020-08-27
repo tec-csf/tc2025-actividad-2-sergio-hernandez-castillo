@@ -9,6 +9,11 @@ Descripción: Actividad 2 - Apuntadores a funciones
 
 #define N 5
 
+typedef struct {
+    char * titulo;
+    int paginas;
+} Libro;
+
 /* Tipos de funciones */
 
 typedef void (*t_dato)(void *);
@@ -57,6 +62,13 @@ void imprimirEntero(void * posicion){
     printf("%d ", *i);
 }
 
+void imprimirLibro(void * posicion){
+    Libro * l = (Libro *)posicion;
+
+    printf("Título: %s\n", l->titulo);
+    printf("Páginas: %d\n", l->paginas);
+}
+
 /* Funciones genéricas */
 
 void recorre(t_recorre iterador, t_dato tipoDeDato, void * arreglo, size_t conteo, size_t tamanio){
@@ -73,10 +85,25 @@ void forwardIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, size_t ta
     }
 }
 
-typedef struct {
-    char * titulo;
-    int paginas;
-} Libro;
+void bidirectionalIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, size_t tamanio){
+    void * bidirectionalBegin = begin(arreglo);
+    void * posicion = bidirectionalBegin;
+
+    while (posicion != NULL){
+        imprimirArreglo(tipoDeDato, posicion);
+        posicion = next(arreglo, posicion, conteo, tamanio);
+    }
+
+    printf("\n");
+
+    void * bidirectionalEnd = end(arreglo, conteo, tamanio) - tamanio;
+    posicion = bidirectionalEnd;
+
+    while(posicion != NULL){
+        imprimirArreglo(tipoDeDato, posicion);
+        posicion = prev(arreglo, posicion, conteo, tamanio);
+    }
+}
 
 int main(){
     int * enteros = (int *) malloc(sizeof(int) * N);
@@ -107,8 +134,11 @@ int main(){
 
     printf("\nSe há llenado el arreglo dinámico de libros.\n\n");
 
-    printf("Ahora se va a recorrer el arreglo dinámico de enteros usando un forward iterator: ");
+    printf("Ahora se va a recorrer el arreglo dinámico de enteros usando un forward iterator:\n");
     recorre(&forwardIterator, &imprimirEntero, enteros, N, sizeof(enteros));
+
+    printf("\n\nAhora se va a recorrer el arreglo dinámico de libros usando un bidirectional iterator:\n");
+    recorre(&bidirectionalIterator, &imprimirLibro, libros, N, sizeof(libros));
 
     for (Libro * l = libros; l < finLibros; ++l){
         free(l->titulo);
