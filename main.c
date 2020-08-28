@@ -118,7 +118,7 @@ int main(){
     printf("\nSe há llenado el arreglo dinámico de enteros.");
     printf("\n\nProporcione los datos de los 5 libros:");
 
-  /*  Libro * finLibros = libros + N;
+    Libro * finLibros = libros + N;
 
     for (Libro * l = libros; l < finLibros; ++l){
         l->titulo = (char *) malloc(sizeof(char) * 25);
@@ -128,20 +128,20 @@ int main(){
         printf("Proporcione la cantidad de páginas que tiene el libro: ");
         scanf("%d", &l->paginas);
     }
-*/
+
     printf("\nSe há llenado el arreglo dinámico de libros.\n\n");
 
     printf("Ahora se va a recorrer el arreglo dinámico de enteros usando un forward iterator:\n");
-    recorre(&bidirectionalIterator, &imprimirEntero, enteros, N, sizeof(enteros));
+    recorre(&forwardIterator, &imprimirEntero, enteros, N, sizeof(enteros));
 
-    //printf("\n\nAhora se va a recorrer el arreglo dinámico de libros usando un bidirectional iterator:\n");
-    //recorre(&forwardIterator, &imprimirLibro, libros, N, sizeof(libros));
+    printf("\n\nAhora se va a recorrer el arreglo dinámico de libros usando un bidirectional iterator:\n");
+    recorre(&forwardIterator, &imprimirLibro, libros, N, sizeof(libros));
 
-   /* for (Libro * l = libros; l < finLibros; ++l){
+    for (Libro * l = libros; l < finLibros; ++l){
         free(l->titulo);
-    }*/
+    }
 
-    //free(libros);
+    free(libros);
     free(enteros);
 
     return 0;
