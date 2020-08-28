@@ -76,8 +76,7 @@ void recorre(t_recorre iterador, t_dato tipoDeDato, void * arreglo, size_t conte
 }
 
 void forwardIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, size_t tamanio){
-    void * forwardBegin = begin(arreglo);
-    void * posicion = forwardBegin; 
+    void * posicion = begin(arreglo);
 
     while (posicion != NULL){
         imprimirArreglo(tipoDeDato, posicion);
@@ -86,8 +85,7 @@ void forwardIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, size_t ta
 }
 
 void bidirectionalIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, size_t tamanio){
-    void * bidirectionalBegin = begin(arreglo);
-    void * posicion = bidirectionalBegin;
+    void * posicion = begin(arreglo);
 
     while (posicion != NULL){
         imprimirArreglo(tipoDeDato, posicion);
@@ -96,8 +94,7 @@ void bidirectionalIterator(t_dato tipoDeDato, void * arreglo, size_t conteo, siz
 
     printf("\n");
 
-    void * bidirectionalEnd = end(arreglo, conteo, tamanio) - tamanio;
-    posicion = bidirectionalEnd;
+    posicion = end(arreglo, conteo, tamanio) - tamanio;
 
     while(posicion != NULL){
         imprimirArreglo(tipoDeDato, posicion);
@@ -115,7 +112,7 @@ int main(){
     int * finEnteros = enteros + N;
 
     for (; e < finEnteros; ++e){
-        *e = rand() % 100;
+        *e = rand() % 50;
     }
 
     printf("\nSe há llenado el arreglo dinámico de enteros.");
@@ -135,10 +132,10 @@ int main(){
     printf("\nSe há llenado el arreglo dinámico de libros.\n\n");
 
     printf("Ahora se va a recorrer el arreglo dinámico de enteros usando un forward iterator:\n");
-    recorre(&forwardIterator, &imprimirEntero, enteros, N, sizeof(enteros));
+    //recorre(&forwardIterator, &imprimirEntero, enteros, N, sizeof(enteros));
 
     printf("\n\nAhora se va a recorrer el arreglo dinámico de libros usando un bidirectional iterator:\n");
-    recorre(&bidirectionalIterator, &imprimirLibro, libros, N, sizeof(libros));
+    //recorre(&forwardIterator, &imprimirLibro, libros, N, sizeof(libros));
 
     for (Libro * l = libros; l < finLibros; ++l){
         free(l->titulo);
