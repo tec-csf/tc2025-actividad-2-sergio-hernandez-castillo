@@ -143,20 +143,20 @@ int main(){
     printf("Ahora se va a recorrer el arreglo dinámico de enteros usando un forward iterator:\n");
     recorre(&forwardIterator, &imprimirEntero, enteros, N, sizeof(int));
 
-    printf("\n\nAhora se va a recorrer el arreglo dinámico de enteros usando un reverse iterator:\n");
-    recorre(&reverseIterator, &imprimirEntero, enteros, N, sizeof(int));
+    // printf("\n\nAhora se va a recorrer el arreglo dinámico de enteros usando un reverse iterator:\n");
+    // recorre(&reverseIterator, &imprimirEntero, enteros, N, sizeof(int));
 
-    printf("\n\nAhora se va a recorrer el arreglo dinámico de enteros usando un bidirectional iterator:\n");
-    recorre(&bidirectionalIterator, &imprimirEntero, enteros, N, sizeof(int));
+    // printf("\n\nAhora se va a recorrer el arreglo dinámico de enteros usando un bidirectional iterator:\n");
+    // recorre(&bidirectionalIterator, &imprimirEntero, enteros, N, sizeof(int));
 
     printf("\n\nAhora se va a recorrer el arreglo dinámico de libros usando un bidirectional iterator:\n");
     recorre(&bidirectionalIterator, &imprimirLibro, libros, N, sizeof(Libro));
 
-    printf("\nAhora se va a recorrer el arreglo dinámico de libros usando un forward iterator:\n");
-    recorre(&forwardIterator, &imprimirLibro, libros, N, sizeof(Libro));
+    // printf("\nAhora se va a recorrer el arreglo dinámico de libros usando un forward iterator:\n");
+    // recorre(&forwardIterator, &imprimirLibro, libros, N, sizeof(Libro));
 
-    printf("\nAhora se va a recorrer el arreglo dinámico de libros usando un reverse iterator:\n");
-    recorre(&reverseIterator, &imprimirLibro, libros, N, sizeof(Libro));
+    // printf("\nAhora se va a recorrer el arreglo dinámico de libros usando un reverse iterator:\n");
+    // recorre(&reverseIterator, &imprimirLibro, libros, N, sizeof(Libro));
 
     for (Libro * l = libros; l < finLibros; ++l){
         free(l->titulo);
